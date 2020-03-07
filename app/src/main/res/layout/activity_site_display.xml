@@ -1,0 +1,89 @@
+<GridLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:columnCount="3"
+    android:orientation="horizontal"
+    android:layoutDirection="rtl">
+
+
+    <Button
+        android:id="@+id/entertainmentSiteButton"
+        android:text="אתר בילוי"
+        android:onClick="onEntertainmentSiteButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"/>
+
+    <Button
+        android:text="דרכי הגעה"
+        android:onClick="onNavigationButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"/>
+    <Button
+        android:text="תחנות דלק ומסעדות בסביבה"
+        android:onClick="onGasStationsAndRestaurantsButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"/>
+
+    <Button
+        android:text="מזג אוויר"
+        android:onClick="onWeatherButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"/>
+
+    <Button
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="שינוי רקע"
+        android:onClick="onBackgroundButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1" />
+
+    <Button
+        android:id="@+id/dangerousPathsButton"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="מקומות מסוכנים"
+        android:onClick="onDangerousPathsButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"/>
+    <Button
+        android:id="@+id/naturalPhenomenaButton"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="תופעות טבע"
+        android:onClick="onNaturalPhenomenaButtonClicked"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1" />
+    <Button
+        android:id="@+id/dangerousAnimalsButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:layout_columnWeight="1"
+        android:text="חיות מסוכנות"
+        android:onClick="onDangerousAnimalsButtonClicked" />
+    <Button
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="חוות דעת"
+        android:onClick="onReviewsButtonClicked" />
+    <Button
+        android:id="@+id/favouritesButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="הוספה למועודפים"
+        android:onClick="onFavouritesButtonClicked"
+        android:layout_columnWeight="1"/>
+</GridLayout>
