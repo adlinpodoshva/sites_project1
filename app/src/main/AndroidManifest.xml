@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.misha">
+    package="com.misha.sitesproject">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sites_activities.ReviewActivity"></activity>
+        <activity android:name="com.misha.sitesproject.sites_activities.ReviewActivity"></activity>
         <activity
-            android:name=".sites_activities.FavouriteSitesDisplayActivity"
+            android:name="com.misha.sitesproject.sites_activities.FavouriteSitesDisplayActivity"
             android:label="מועדפים" />
 
         <provider
@@ -27,9 +28,9 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".sites_activities.SiteDisplayActivity" />
-        <activity android:name=".area_activities.CityDisplayActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.misha.sitesproject.sites_activities.SiteDisplayActivity" />
+        <activity android:name="com.misha.sitesproject.area_activities.CityDisplayActivity" />
+        <activity android:name="com.misha.sitesproject.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,16 +38,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name="com.misha.sitesproject.authentication_activities.SignupActivity"
             android:label="הרשמה" />
         <activity
-            android:name=".SigninActivity"
+            android:name="com.misha.sitesproject.authentication_activities.SigninActivity"
             android:label="התחברות" />
         <activity
-            android:name=".area_activities.AreaSelectionActivity"
+            android:name="com.misha.sitesproject.area_activities.AreaSelectionActivity"
             android:label="בחירת אזור" />
         <activity
-            android:name=".area_activities.AreaDisplayActivity"
+            android:name="com.misha.sitesproject.area_activities.AreaDisplayActivity"
             android:label="בחירת עיר" />
     </application>
 

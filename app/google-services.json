@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "474907812418",
+    "firebase_url": "https://sitesproject-4665e.firebaseio.com",
+    "project_id": "sitesproject-4665e",
+    "storage_bucket": "sitesproject-4665e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:474907812418:android:001e58d4516706d66a03db",
+        "android_client_info": {
+          "package_name": "com.misha.sitesproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "474907812418-82q36683mcg43d0cpp6cse5t13hjr0p2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb5ZZw8gMUIDMbqVPo1om4_8pMYWq8bX8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "474907812418-82q36683mcg43d0cpp6cse5t13hjr0p2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

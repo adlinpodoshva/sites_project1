@@ -1,4 +1,4 @@
-package com.example.misha.sites_activities;
+package com.misha.sitesproject.sites_activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SortedList;
 
 import com.bumptech.glide.Glide;
-import com.example.misha.R;
+import com.misha.sitesproject.R;
 
 import java.util.Comparator;
 import java.util.List;

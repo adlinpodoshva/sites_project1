@@ -1,4 +1,4 @@
-package com.example.misha.sites_activities;
+package com.misha.sitesproject.sites_activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -10,7 +10,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,8 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.misha.FavouritesManager;
-import com.example.misha.R;
+import com.misha.sitesproject.FavouritesManager;
+import com.misha.sitesproject.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

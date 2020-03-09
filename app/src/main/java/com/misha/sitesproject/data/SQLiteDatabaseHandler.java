@@ -1,4 +1,4 @@
-package com.example.misha.data;
+package com.misha.sitesproject.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,13 +14,13 @@ public class SQLiteDatabaseHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        User.createTable(db);
+      //  User.createTable(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + User.getTableName());
+      //  db.execSQL("DROP TABLE IF EXISTS " + User.getTableName());
 
         // Create tables again
         onCreate(db);

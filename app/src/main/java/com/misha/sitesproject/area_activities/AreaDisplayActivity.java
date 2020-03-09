@@ -1,4 +1,4 @@
-package com.example.misha.area_activities;
+package com.misha.sitesproject.area_activities;
 
 import android.content.Intent;
 
@@ -11,7 +11,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.misha.R;
+import com.google.firebase.database.FirebaseDatabase;
+import com.misha.sitesproject.R;
 
 public class AreaDisplayActivity extends AppCompatActivity {
     public final static String AREA_KEY = "KEY_AREA";
@@ -22,6 +23,9 @@ public class AreaDisplayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_display);
+
+        FirebaseDatabase.getInstance().getReference().child("test2").setValue("testvalue77");
+
 
         this.area = eArea.valueOf(getIntent().getStringExtra(AREA_KEY));
         initListView();

@@ -6,25 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SignupActivity"
+    tools:context=".authentication_activities.SignupActivity"
     android:padding="15dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Already signed up?"/>
+        android:text="כבר רשומים?"/>
     <Button
         android:onClick="onSigninButtonClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign In"/>
+        android:text="התחברות"/>
 
 
     <EditText
         android:id="@+id/emailEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="דואר אלקטרוני"
         android:inputType="textEmailAddress"
         android:layout_marginTop="20dp" />
     <EditText
@@ -32,19 +32,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="Password" />
+        android:hint="סיסמה" />
     <EditText
         android:id="@+id/fullNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Full Name"
+        android:hint="שם מלא"
         android:inputType="textEmailAddress"/>
+    <EditText
+        android:id="@+id/phoneEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="מספר טלפון"
+        android:inputType="phone"/>
 
     <Button
         android:layout_marginTop="15dp"
         android:onClick="onSignupButtonClick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sign Up"/>
+        android:text="הרשמה"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,4 +1,4 @@
-package com.example.misha.area_activities;
+package com.misha.sitesproject.area_activities;
 
 import android.content.Intent;
 
@@ -10,8 +10,8 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.misha.R;
-import com.example.misha.sites_activities.FavouriteSitesDisplayActivity;
+import com.misha.sitesproject.R;
+import com.misha.sitesproject.sites_activities.FavouriteSitesDisplayActivity;
 
 public class AreaSelectionActivity extends AppCompatActivity {
     @Override

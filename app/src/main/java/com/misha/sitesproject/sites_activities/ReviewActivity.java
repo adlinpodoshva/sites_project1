@@ -1,4 +1,4 @@
-package com.example.misha.sites_activities;
+package com.misha.sitesproject.sites_activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.misha.R;
+import com.misha.sitesproject.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class ReviewActivity extends AppCompatActivity {

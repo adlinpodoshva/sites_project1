@@ -1,10 +1,10 @@
-package com.example.misha;
+package com.misha.sitesproject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.misha.area_activities.eArea;
-import com.example.misha.sites_activities.eSite;
+import com.misha.sitesproject.area_activities.eArea;
+import com.misha.sitesproject.sites_activities.eSite;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.misha.sites_activities;
+package com.misha.sitesproject.sites_activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,11 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.misha.FavouritesManager;
-import com.example.misha.R;
-import com.example.misha.area_activities.CityDisplayActivity;
-import com.example.misha.area_activities.eArea;
-import com.example.misha.area_activities.eCity;
+import com.misha.sitesproject.FavouritesManager;
+import com.misha.sitesproject.R;
+import com.misha.sitesproject.area_activities.eArea;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package com.example.misha.area_activities;
+package com.misha.sitesproject.area_activities;
 
-import com.example.misha.sites_activities.eSite;
+import com.misha.sitesproject.sites_activities.eSite;
 
 public enum eCity {
     RAMAT_HAGOLAN("רמת הגולן"),

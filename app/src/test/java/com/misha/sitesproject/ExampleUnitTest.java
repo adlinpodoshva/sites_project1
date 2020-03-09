@@ -1,4 +1,4 @@
-package com.example.misha;
+package com.misha.sitesproject;
 
 import org.junit.Test;
 

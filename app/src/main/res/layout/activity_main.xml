@@ -20,7 +20,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="כנס לאפליקציה"
+        android:text="כניסה לאפליקציה"
         android:onClick="onButtonClick"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"/>

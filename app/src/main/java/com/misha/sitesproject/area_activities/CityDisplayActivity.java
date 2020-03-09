@@ -1,4 +1,4 @@
-package com.example.misha.area_activities;
+package com.misha.sitesproject.area_activities;
 
 import android.os.Bundle;
 
@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.misha.R;
-import com.example.misha.sites_activities.SiteRecyclerViewAdapter;
+import com.misha.sitesproject.R;
+import com.misha.sitesproject.sites_activities.SiteRecyclerViewAdapter;
 
 import java.util.Arrays;
 

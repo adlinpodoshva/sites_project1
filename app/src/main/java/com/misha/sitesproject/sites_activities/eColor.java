@@ -1,4 +1,4 @@
-package com.example.misha.sites_activities;
+package com.misha.sitesproject.sites_activities;
 
 import android.graphics.Color;
 
