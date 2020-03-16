@@ -13,6 +13,6 @@ public class AuthenticationUtils {
     }
 
     public static boolean isValidPhone(String phone) {
-        return phone.length() >= 9 && phone.length() <= 11;
+        return phone.length() >= 8 && phone.length() <= 11;
     }
 }

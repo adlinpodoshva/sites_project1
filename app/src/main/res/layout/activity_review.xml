@@ -10,17 +10,33 @@
         android:gravity="center_vertical"
         android:padding="15dp">
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/siteNameTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/siteNameEditText"
+                android:inputType="text"
+                android:enabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="שם האתר"
+                android:gravity="right"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/nameEditText"
                 android:inputType="text"
+                android:enabled="false"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="שם"
-                android:maxLength="20"/>
+                android:gravity="right"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/contentTextInputLayout"
             android:layout_width="match_parent"
@@ -35,8 +51,29 @@
                 android:maxLines="6"
                 android:scrollbars="vertical"
                 android:hint="תוכן חוות הדעת"
-                android:maxLength="200"/>
+                android:maxLength="200"
+                android:gravity="right"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:backgroundTint="@android:color/holo_blue_light"
+                android:src="@drawable/ic_camera_enhance_white_36dp"
+                android:onClick="onContentAddImageButtonClick"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/contentImagesLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </HorizontalScrollView>
+        
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dangerPlacesTextInputLayout"
             android:layout_width="match_parent"
@@ -51,8 +88,28 @@
                 android:maxLines="3"
                 android:scrollbars="vertical"
                 android:hint="מקומות מסוכנים"
-                android:maxLength="100"/>
+                android:maxLength="100"
+                android:gravity="right"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:backgroundTint="@android:color/holo_red_light"
+                android:src="@drawable/ic_camera_enhance_white_36dp"
+                android:onClick="onDangerousPlacesAddImageButtonClick"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/dangerousPlacesImagesLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </HorizontalScrollView>
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dangerAnimalsTextInputLayout"
             android:layout_width="match_parent"
@@ -67,8 +124,33 @@
                 android:maxLines="3"
                 android:scrollbars="vertical"
                 android:hint="בעלי חיים מסוכנים"
-                android:maxLength="100"/>
+                android:maxLength="100"
+                android:gravity="right"/>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:backgroundTint="@android:color/holo_red_light"
+                android:src="@drawable/ic_camera_enhance_white_36dp"
+                android:onClick="onDangerousAnimalsAddImageButtonClick"/>
         </com.google.android.material.textfield.TextInputLayout>
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/dangerousAnimalsImagesLinearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </HorizontalScrollView>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+        </androidx.appcompat.widget.LinearLayoutCompat>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.misha.sitesproject.area_activities.AreaSelectionActivity;
 import com.misha.sitesproject.authentication_activities.SignupActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,10 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onButtonClick(View v) {
-        Toast.makeText(this, "my message", Toast.LENGTH_LONG).show();
+    public void onEnterWithUserButtonClick(View v) {
         Intent intent = new Intent(this, SignupActivity.class);
         startActivity(intent);
-        finish();
+    }
+
+    public void onEnterWithoutUserButtonClick(View v) {
+        Intent intent = new Intent(this, AreaSelectionActivity.class);
+        startActivity(intent);
     }
 }

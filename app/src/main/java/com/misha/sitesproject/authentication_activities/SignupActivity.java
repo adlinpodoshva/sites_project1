@@ -24,7 +24,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SignupActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +67,7 @@ public class SignupActivity extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     // add user data to database
                     DatabaseReference dbRoot = FirebaseDatabase.getInstance().getReference();
-                    dbRoot.child(auth.getUid()).setValue(user);
+                    dbRoot.child("users").child(auth.getUid()).setValue(user);
                     Toast.makeText(SignupActivity.this, "נרשמתם בהצלחה", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(SignupActivity.this, AreaSelectionActivity.class));
                 } else {

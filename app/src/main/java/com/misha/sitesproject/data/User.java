@@ -1,7 +1,6 @@
 package com.misha.sitesproject.data;
 
-import android.database.sqlite.SQLiteDatabase;
-
+// empty constructor for firebase
 public class User {
 //    private final static String KEY_ID = "id";
 //    private final static String TABLE_NAME = "User";
@@ -9,9 +8,13 @@ public class User {
 //    private final static String KEY_PASSWORD = "password";
 //    private final static String KEY_FULLNAME = "fullName";
 
-    private final String email;
-    private final String fullName;
-    private final String phone;
+    private String email;
+    private String fullName;
+    private String phone;
+
+    public User() {
+
+    }
 
     public User(String email, String fullName, String phone) {
         this.email = email;

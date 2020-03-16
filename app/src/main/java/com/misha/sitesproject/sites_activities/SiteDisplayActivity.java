@@ -19,8 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.misha.sitesproject.FavouritesManager;
 import com.misha.sitesproject.R;
+import com.misha.sitesproject.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -48,8 +50,8 @@ public class SiteDisplayActivity extends AppCompatActivity {
     }
 
     public void onEntertainmentSiteButtonClicked(View v) {
-        if(!isWritePermissionGranted()) {
-            requestWritePermission(WRITE_EXTERNAL_STORAGE_REQUEST_ENTERTAINMENT_SITE_CODE);
+        if(!Utils.isWritePermissionGranted(this)) {
+            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_ENTERTAINMENT_SITE_CODE);
             return;
         }
         openPdfViaIntent(getHatarFilename());
@@ -99,33 +101,40 @@ public class SiteDisplayActivity extends AppCompatActivity {
     }
 
     public void onDangerousPathsButtonClicked(View v) {
-        if(!isWritePermissionGranted()) {
-            requestWritePermission(WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PATHS_CODE);
+        if(!Utils.isWritePermissionGranted(this)) {
+            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PATHS_CODE);
             return;
         }
         openPdfViaIntent(getDangerousPathsFileName());
     }
 
     public void onNaturalPhenomenaButtonClicked(View v) {
-        if(!isWritePermissionGranted()) {
-            requestWritePermission(WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE);
+        if(!Utils.isWritePermissionGranted(this)) {
+            Utils.requestWritePermission(this,WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE);
             return;
         }
         openPdfViaIntent(getNaturalPhenomenaFilename());
     }
 
     public void onDangerousAnimalsButtonClicked(View v) {
-        if(!isWritePermissionGranted()) {
-            requestWritePermission(WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE);
+        if(!Utils.isWritePermissionGranted(this)) {
+            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE);
             return;
         }
         openPdfViaIntent(getDangerousAnimalsFilename());
     }
 
     public void onReviewsButtonClicked(View v) {
-        Intent intent = new Intent(this, ReviewActivity.class);
-        intent.putExtra(ReviewActivity.SITE_NAME_EXTRA_KEY, this.site.name());
-        startActivity(intent);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if(auth.getCurrentUser() != null) {
+            Intent intent = new Intent(this, ReviewActivity.class);
+            intent.putExtra(ReviewActivity.SITE_NAME_EXTRA_KEY, this.site.name());
+            startActivity(intent);
+        } else { // user not signed in
+            Toast.makeText(this, "יש להתחבר עם שם משתמש לצורך השארת חוות דעת", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     public void onFavouritesButtonClicked(View v) {
@@ -204,19 +213,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
             startActivity(intent);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean isWritePermissionGranted() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
-                || ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-    }
-
-    private void requestWritePermission(int requsetCode) {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, requsetCode);
         }
     }
 

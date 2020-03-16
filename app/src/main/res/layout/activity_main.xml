@@ -15,13 +15,18 @@
         app:srcCompat="@drawable/main_screen_image"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="15dp"/>
-
     <Button
-        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="כניסה לאפליקציה"
-        android:onClick="onButtonClick"
+        android:text="כניסה עם שם משתמש"
+        android:onClick="onEnterWithUserButtonClick"
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center_horizontal"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="כניסה ללא רישום"
+        android:onClick="onEnterWithoutUserButtonClick"
         android:layout_marginTop="15dp"
         android:layout_gravity="center_horizontal"/>
 
