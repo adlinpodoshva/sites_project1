@@ -76,14 +76,21 @@
         android:layout_columnWeight="1"
         android:layout_height="0dp"
         android:layout_rowWeight="1"
-        android:text="חוות דעת"
-        android:onClick="onReviewsButtonClicked" />
+        android:text="הוספת חוות דעת"
+        android:onClick="onAddReviewsButtonClicked" />
+    <Button
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_height="0dp"
+        android:layout_rowWeight="1"
+        android:text="הצגת חוות דעת"
+        android:onClick="onViewReviewListButtonClicked" />
     <Button
         android:id="@+id/favouritesButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_rowWeight="1"
-        android:text="הוספה למועודפים"
+        android:text="הוספה למועדפים"
         android:onClick="onFavouritesButtonClicked"
         android:layout_columnWeight="1"/>
 </GridLayout>

@@ -3,15 +3,12 @@ package com.misha.sitesproject.sites_activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -124,12 +121,12 @@ public class SiteDisplayActivity extends AppCompatActivity {
         openPdfViaIntent(getDangerousAnimalsFilename());
     }
 
-    public void onReviewsButtonClicked(View v) {
+    public void onAddReviewsButtonClicked(View v) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         if(auth.getCurrentUser() != null) {
-            Intent intent = new Intent(this, ReviewActivity.class);
-            intent.putExtra(ReviewActivity.SITE_NAME_EXTRA_KEY, this.site.name());
+            Intent intent = new Intent(this, AddReviewActivity.class);
+            intent.putExtra(AddReviewActivity.SITE_NAME_EXTRA_KEY, this.site.name());
             startActivity(intent);
         } else { // user not signed in
             Toast.makeText(this, "יש להתחבר עם שם משתמש לצורך השארת חוות דעת", Toast.LENGTH_LONG).show();
@@ -141,6 +138,12 @@ public class SiteDisplayActivity extends AppCompatActivity {
         boolean setFavourite = !FavouritesManager.isFavourite(this.site, this);
         FavouritesManager.setFavouriteFlag(this. site, setFavourite, this);
         setFavouritesButtonText();
+    }
+
+    public void onViewReviewListButtonClicked(View v) {
+        Intent intent = new Intent(this, SiteReviewListActivity.class);
+        intent.putExtra(SiteReviewListActivity.SITE_NAME_EXTRA_KEY, this.site.name());
+        startActivity(intent);
     }
 
     private void initLayout() {

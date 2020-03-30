@@ -24,9 +24,6 @@ public class AreaDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_display);
 
-        FirebaseDatabase.getInstance().getReference().child("test2").setValue("testvalue77");
-
-
         this.area = eArea.valueOf(getIntent().getStringExtra(AREA_KEY));
         initListView();
 
