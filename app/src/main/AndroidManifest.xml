@@ -14,10 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sites_activities.ViewSiteReviewActivity"
-            android:label="הצגת חוות דעת"></activity>
-        <activity android:name=".sites_activities.SiteReviewListActivity"
-            android:label="רשימת חוות דעת"/>
+        <activity android:name=".sites_activities.SitePlacesActivity"></activity>
+        <activity android:name=".sites_activities.SiteAnimalsActivity" />
+        <activity
+            android:name=".sites_activities.ViewSiteReviewActivity"
+            android:label="הצגת חוות דעת" />
+        <activity
+            android:name=".sites_activities.SiteReviewListActivity"
+            android:label="רשימת חוות דעת" />
         <activity android:name=".sites_activities.AddReviewActivity" />
         <activity
             android:name=".sites_activities.FavouriteSitesDisplayActivity"

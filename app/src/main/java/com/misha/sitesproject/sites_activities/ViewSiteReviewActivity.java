@@ -8,6 +8,7 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -31,12 +32,19 @@ import com.misha.sitesproject.data.User;
 import java.util.List;
 
 public class ViewSiteReviewActivity extends AppCompatActivity {
+    public enum eReviewDisplayType {
+        ANIMALS, PLACES, ALL
+    }
+
     public static final String REVIEW_KEY_EXTRA = "EXTRA_REVIEW_KEY";
     public static final String SITE_NAME_EXTRA = "EXTRA_SITE_NAME";
+    public static final String REVIEW_DISPLAY_TYPE_NAME_EXTRA = "EXTRA_REVIEW_DISPLAY_TYPE_NAME";
     private static final String IMAGE_DOWNLOAD_ERROR_MESSAGE = "התרחשה שגיאה בעת נסיון טעינת תמונה";
+
     private String reviewKey;
     private eSite site;
     private Review review;
+    private eReviewDisplayType reviewDisplayType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +52,14 @@ public class ViewSiteReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_review);
         this.reviewKey = getIntent().getStringExtra(REVIEW_KEY_EXTRA);
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA));
+        this.reviewDisplayType =
+                eReviewDisplayType.valueOf(getIntent().getStringExtra(REVIEW_DISPLAY_TYPE_NAME_EXTRA));
         initReviewdata();
     }
 
     private void initReviewdata() {
+        setDataFieldsVisibility();
+
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
         databaseReference.child("reviews").child(this.site.name()).child(this.reviewKey).addValueEventListener(new ValueEventListener() {
@@ -64,6 +76,24 @@ public class ViewSiteReviewActivity extends AppCompatActivity {
         });
 
         downloadImages();
+    }
+
+    private void setDataFieldsVisibility() {
+        if(this.reviewDisplayType != eReviewDisplayType.ALL) {
+            findViewById(R.id.contentHeaderTextView).setVisibility(View.GONE);
+            findViewById(R.id.contentTextView).setVisibility(View.GONE);
+            findViewById(R.id.contentHorizontalScrollView).setVisibility(View.GONE);
+
+            if(this.reviewDisplayType == eReviewDisplayType.ANIMALS) {
+                findViewById(R.id.dangerousPlacesHeaderTextView).setVisibility(View.GONE);
+                findViewById(R.id.dangerousPlacesTextView).setVisibility(View.GONE);
+                findViewById(R.id.dangerousPlacesHorizontalScrollView).setVisibility(View.GONE);
+            } else { // places
+                findViewById(R.id.dangerousAnimalsHeaderTextView).setVisibility(View.GONE);
+                findViewById(R.id.dangerousAnimalsTextView).setVisibility(View.GONE);
+                findViewById(R.id.dangerousAnimalsHorizontalScrollView).setVisibility(View.GONE);
+            }
+        }
     }
 
     private void updateTextViews(Review review) {
@@ -83,20 +113,29 @@ public class ViewSiteReviewActivity extends AppCompatActivity {
             }
         });
 
-        ((AppCompatTextView) findViewById(R.id.contentTextView)).setText(review.getContent());
-        ((AppCompatTextView) findViewById(R.id.dangerousPlacesTextView)).setText(review.getDangerousPlaces());
-        ((AppCompatTextView) findViewById(R.id.dangerousAnimalsTextView)).setText(review.getDangerousAnimals());
+        if(this.reviewDisplayType == eReviewDisplayType.ALL)
+            ((AppCompatTextView) findViewById(R.id.contentTextView)).setText(review.getContent());
+        if(this.reviewDisplayType != eReviewDisplayType.ANIMALS)
+            ((AppCompatTextView) findViewById(R.id.dangerousPlacesTextView)).setText(review.getDangerousPlaces());
+        if(this.reviewDisplayType != eReviewDisplayType.PLACES)
+            ((AppCompatTextView) findViewById(R.id.dangerousAnimalsTextView)).setText(review.getDangerousAnimals());
     }
 
      // download all review images
     private void downloadImages() {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference();
-        downloadImages(storageRef, "content", (LinearLayoutCompat)findViewById(R.id.contentImagesLinearLayout));
-        downloadImages(storageRef, "danger_places",
-                (LinearLayoutCompat)findViewById(R.id.dangerousPlacesImagesLinearLayout));
-        downloadImages(storageRef, "danger_animals",
-                (LinearLayoutCompat)findViewById(R.id.dangerousaAnimalsImagesLinearLayout));
+
+        if(this.reviewDisplayType == eReviewDisplayType.ALL)
+            downloadImages(storageRef, "content", (LinearLayoutCompat)findViewById(R.id.contentImagesLinearLayout));
+
+        if(this.reviewDisplayType != eReviewDisplayType.ANIMALS)
+            downloadImages(storageRef, "danger_places",
+                    (LinearLayoutCompat)findViewById(R.id.dangerousPlacesImagesLinearLayout));
+
+        if(this.reviewDisplayType != eReviewDisplayType.PLACES)
+            downloadImages(storageRef, "danger_animals",
+                    (LinearLayoutCompat)findViewById(R.id.dangerousaAnimalsImagesLinearLayout));
     }
 
     // download images from a specific subref

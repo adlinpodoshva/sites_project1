@@ -28,6 +28,7 @@
 
         <!-- content -->
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/contentHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="23sp"
@@ -40,6 +41,7 @@
             android:layout_marginTop="7dp"
             android:singleLine="false"/>
         <HorizontalScrollView
+            android:id="@+id/contentHorizontalScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -54,6 +56,7 @@
 
         <!-- dangerous places -->
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dangerousPlacesHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="23sp"
@@ -67,6 +70,7 @@
             android:layout_marginTop="7dp"
             android:singleLine="false"/>
         <HorizontalScrollView
+            android:id="@+id/dangerousPlacesHorizontalScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -81,6 +85,7 @@
 
         <!-- dangerous places -->
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/dangerousAnimalsHeaderTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="23sp"
@@ -92,8 +97,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:singleLine="false"/>
+            android:singleLine="false" />
         <HorizontalScrollView
+            android:id="@+id/dangerousAnimalsHorizontalScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

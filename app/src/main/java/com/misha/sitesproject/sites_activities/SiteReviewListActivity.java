@@ -22,12 +22,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SiteReviewListActivity extends AppCompatActivity {
+
+
     public static final String SITE_NAME_EXTRA_KEY = "EXTRA_SITE_NAME";
+    public static final String REVIEW_DISPLAY_TYPE_NAME_EXTRA_KEY = "EXTRA_REVIEW_DISPLAY_TYPE_NAME";
 
     private List<Review> reviewList = new ArrayList<>();
     private List<String> reviewKeyList = new ArrayList<>();
 
     private eSite site;
+    private ViewSiteReviewActivity.eReviewDisplayType reviewDisplayType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,8 @@ public class SiteReviewListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_site_review_list);
 
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA_KEY));
+        this.reviewDisplayType = ViewSiteReviewActivity.eReviewDisplayType.valueOf(
+                getIntent().getStringExtra(REVIEW_DISPLAY_TYPE_NAME_EXTRA_KEY));
         initReviewList();
     }
 
@@ -48,6 +54,8 @@ public class SiteReviewListActivity extends AppCompatActivity {
                 Intent intent = new Intent(SiteReviewListActivity.this, ViewSiteReviewActivity.class);
                 intent.putExtra(ViewSiteReviewActivity.REVIEW_KEY_EXTRA, reviewKey);
                 intent.putExtra(ViewSiteReviewActivity.SITE_NAME_EXTRA, SiteReviewListActivity.this.site.name());
+                intent.putExtra(ViewSiteReviewActivity.REVIEW_DISPLAY_TYPE_NAME_EXTRA,
+                        SiteReviewListActivity.this.reviewDisplayType.name());
                 startActivity(intent);
             }
         });
