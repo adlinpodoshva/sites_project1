@@ -48,7 +48,7 @@
         android:layout_columnWeight="1" />
 
     <Button
-        android:id="@+id/dangerousPathsButton"
+        android:id="@+id/placesButton"
         android:layout_height="0dp"
         android:layout_rowWeight="1"
         android:text="מקומות ומקומות מסוכנים"
@@ -64,7 +64,7 @@
         android:layout_width="0dp"
         android:layout_columnWeight="1" />
     <Button
-        android:id="@+id/dangerousAnimalsButton"
+        android:id="@+id/animalsButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_rowWeight="1"

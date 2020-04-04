@@ -17,18 +17,18 @@ import com.misha.sitesproject.Utils;
 
 import java.io.IOException;
 
-public class SiteAnimalsActivity extends AppCompatActivity {
+public class SitePlacesActivity extends AppCompatActivity {
     public static final String SITE_NAME_EXTRA = "EXTRA_SITE_NAME";
-    private static final int  WRITE_EXTERNAL_STORAGE_REQUEST_ANIMALS_CODE = 0;
-    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE = 1;
-    private static final int NUM_REQUEST_CODES = WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE + 1;
+    private static final int  WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE = 0;
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE = 1;
+    private static final int NUM_REQUEST_CODES = WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE + 1;
 
     private eSite site;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_site_animals);
+        setContentView(R.layout.activity_site_places);
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA));
         initListView();
     }
@@ -38,10 +38,10 @@ public class SiteAnimalsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode >= 0 && requestCode < NUM_REQUEST_CODES) {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // permission granted
-                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_ANIMALS_CODE) {
-                    onAnimalsOptionSelected();
-                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE) {
-                    onDangerousAnimalsOptionSelected();
+                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE) {
+                    onPlacesOptionSelected();
+                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE) {
+                    onDangerousPlacesOptionSelected();
                 }
             } else { // not granted
                 Toast.makeText(this, "יש לאשר הרשאת כתיבה לצורך צפיה בקבצי התוכן", Toast.LENGTH_LONG).show();
@@ -57,64 +57,64 @@ public class SiteAnimalsActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(eOption.values()[position] == eOption.ANIMALS) {
-                    onAnimalsOptionSelected();
-                } else if(eOption.values()[position] == eOption.DANGEROUS_ANIMALS) {
-                    onDangerousAnimalsOptionSelected();
-                } else if(eOption.values()[position] == eOption.ANIMAL_REVIEWS) {
-                    onAnimalsReviewsOptionSelected();
+                if(eOption.values()[position] == eOption.PLACES) {
+                    onPlacesOptionSelected();
+                } else if(eOption.values()[position] == eOption.DANGEROUS_PLACES) {
+                    onDangerousPlacesOptionSelected();
+                } else if(eOption.values()[position] == eOption.PLACE_REVIEWS) {
+                    onPlacesReviewsOptionSelected();
                 }
             }
         });
     }
 
-    private void onAnimalsOptionSelected() {
+    private void onPlacesOptionSelected() {
         if(!Utils.isWritePermissionGranted(this)) {
-            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_ANIMALS_CODE);
+            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE);
             return;
         }
 
         try {
-            Utils.openPdfViaIntent(getAnimalsFilename(this.site), this);
+            Utils.openPdfViaIntent(getPPlacesFileName(), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
         ;
     }
 
-    private void onDangerousAnimalsOptionSelected() {
+    private void onDangerousPlacesOptionSelected() {
         if(!Utils.isWritePermissionGranted(this)) {
-            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_ANIMALS_CODE);
+            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE);
             return;
         }
 
         try {
-            Utils.openPdfViaIntent(getDangerousAnimalsFilename(this.site), this);
+            Utils.openPdfViaIntent(getDangerousPPlacesFileName(), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
         ;
     }
 
-    private void onAnimalsReviewsOptionSelected() {
+    private void onPlacesReviewsOptionSelected() {
         Intent intent = new Intent(this, SiteReviewListActivity.class);
         intent.putExtra(SiteReviewListActivity.SITE_NAME_EXTRA_KEY, this.site.name());
         intent.putExtra(SiteReviewListActivity.REVIEW_DISPLAY_TYPE_NAME_EXTRA_KEY,
-                ViewSiteReviewActivity.eReviewDisplayType.ANIMALS.name());
+                ViewSiteReviewActivity.eReviewDisplayType.PLACES.name());
         startActivity(intent);
     }
 
-    private static String getAnimalsFilename(eSite site) {
-        return "baaley_hayim_" + site.name().toLowerCase();
+    private String getDangerousPPlacesFileName() {
+        return "mekomot_mesukanim_" + this.site.name().toLowerCase();
     }
 
-    private static String getDangerousAnimalsFilename(eSite site) {
-        return "baaley_hayim_mesukanim_" + site.name().toLowerCase();
+    private String getPPlacesFileName() {
+        return "mekomot_" + this.site.name().toLowerCase();
     }
 
     private enum eOption {
-        ANIMALS("בעלי חיים"), DANGEROUS_ANIMALS("בעלי חיים מסוכנים"),
-        ANIMAL_REVIEWS("צפייה בחוות דעת על בעלי חיים באתר");
+        PLACES("מקומות"), DANGEROUS_PLACES("מקומות מסוכנים"),
+        PLACE_REVIEWS("צפייה בחוות דעת על מקומות באתר");
 
         private final String title;
 

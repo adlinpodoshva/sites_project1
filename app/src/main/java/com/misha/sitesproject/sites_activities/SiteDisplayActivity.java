@@ -30,8 +30,7 @@ import java.io.OutputStream;
 public class SiteDisplayActivity extends AppCompatActivity {
     public static final String SITE_NAME_EXTRA_KEY = "EXTRA_SITE_NAME";
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_ENTERTAINMENT_SITE_CODE = 0;
-    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PATHS_CODE = 1;
-    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE = 2;
+    private static final int WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE = 1;
     private static final int NUM_REQUEST_CODES = WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE + 1;
 
     private eSite site;
@@ -44,6 +43,22 @@ public class SiteDisplayActivity extends AppCompatActivity {
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA_KEY));
         setTitle(this.site.getTitle());
         initLayout();
+    }
+
+    @Override
+    // called after user chose to accept / reject a permission
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode >= 0 && requestCode < NUM_REQUEST_CODES) {
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // permission granted
+                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_ENTERTAINMENT_SITE_CODE) {
+                    onEntertainmentSiteButtonClicked(findViewById(R.id.entertainmentSiteButton));
+                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE) {
+                    onNaturalPhenomenaButtonClicked(findViewById(R.id.naturalPhenomenaButton));
+                }
+            } else { // not granted
+                Toast.makeText(this, "יש לאשר הרשאת כתיבה לצורך צפיה בקבצי התוכן", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     public void onEntertainmentSiteButtonClicked(View v) {
@@ -102,19 +117,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void onDangerousPathsButtonClicked(View v) {
-        if(!Utils.isWritePermissionGranted(this)) {
-            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PATHS_CODE);
-            return;
-        }
-
-        try {
-            Utils.openPdfViaIntent(getDangerousPathsFileName(), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
-        }
-    }
-
     public void onNaturalPhenomenaButtonClicked(View v) {
         if(!Utils.isWritePermissionGranted(this)) {
             Utils.requestWritePermission(this,WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE);
@@ -127,8 +129,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
     }
-
-
 
     public void onAddReviewsButtonClicked(View v) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -163,6 +163,12 @@ public class SiteDisplayActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onPlacesButtonClicked(View v) {
+        Intent intent = new Intent(this, SitePlacesActivity.class);
+        intent.putExtra(SitePlacesActivity.SITE_NAME_EXTRA, this.site.name());
+        startActivity(intent);
+    }
+
     private void initLayout() {
         setFavouritesButtonText();
     }
@@ -178,7 +184,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
         }
     }
 
-
     private String getHatarFilename() {
         return "hatar_" + this.site.name().toLowerCase();
     }
@@ -186,24 +191,5 @@ public class SiteDisplayActivity extends AppCompatActivity {
 
     private String getNaturalPhenomenaFilename() {
         return "tofaot_teva_" + this.site.name().toLowerCase();
-    }
-
-
-    @Override
-    // called after user chose to accept / reject a permission
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode >= 0 && requestCode < NUM_REQUEST_CODES) {
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // permission granted
-                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_ENTERTAINMENT_SITE_CODE) {
-                    onEntertainmentSiteButtonClicked(findViewById(R.id.entertainmentSiteButton));
-                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PATHS_CODE) {
-                    onDangerousPathsButtonClicked(findViewById(R.id.dangerousPathsButton));
-                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE) {
-                    onNaturalPhenomenaButtonClicked(findViewById(R.id.naturalPhenomenaButton));
-                }
-            } else { // not granted
-                Toast.makeText(this, "יש לאשר הרשאת כתיבה לצורך צפיה בקבצי התוכן", Toast.LENGTH_LONG).show();
-            }
-        }
     }
 }

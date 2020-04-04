@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sites_activities.SitePlacesActivity"></activity>
-        <activity android:name=".sites_activities.SiteAnimalsActivity" />
+        <activity android:name=".sites_activities.SitePlacesActivity"
+            android:label="מקומות ומקומות מסוכנים"/>
+        <activity android:name=".sites_activities.SiteAnimalsActivity"
+            android:label="בעלי חיים ובעלי חיים מסוכנים"/>
         <activity
             android:name=".sites_activities.ViewSiteReviewActivity"
             android:label="הצגת חוות דעת" />
@@ -37,8 +39,10 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".sites_activities.SiteDisplayActivity" />
-        <activity android:name=".area_activities.CityDisplayActivity" />
+        <activity android:name=".sites_activities.SiteDisplayActivity"
+            android:label="תצוגת אתר"/>
+        <activity android:name=".area_activities.CityDisplayActivity"
+            android:label="תצוגת עיר"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
