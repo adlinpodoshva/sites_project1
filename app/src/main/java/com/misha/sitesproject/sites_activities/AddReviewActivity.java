@@ -67,7 +67,8 @@ public class AddReviewActivity extends AppCompatActivity {
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA_KEY));
         this.auth = FirebaseAuth.getInstance();
 
-        if(!assertSignedIn()) {
+        if(!Utils.finishActivityIfNotSignedIn(FirebaseAuth.getInstance(),
+                this, new Intent(this, SignupActivity.class))) {
             return;
         }
 
@@ -105,11 +106,13 @@ public class AddReviewActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        assertSignedIn();
+        Utils.finishActivityIfNotSignedIn(FirebaseAuth.getInstance(),
+                this, new Intent(this, SignupActivity.class));
     }
 
     public void onSubmitButtonClick(View v) {
-        if(!assertSignedIn()) {
+        if(!Utils.finishActivityIfNotSignedIn(FirebaseAuth.getInstance(),
+                this, new Intent(this, SignupActivity.class))) {
             return;
         }
 
@@ -435,17 +438,7 @@ public class AddReviewActivity extends AppCompatActivity {
         return true;
     }
 
-    // returns true if user is signed in, else false
-    private boolean assertSignedIn() {
-        if(auth.getCurrentUser() == null) {
-            Toast.makeText(this, "התנתקתם מהמערכת, אנא התחברו שנית", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, SignupActivity.class));
-            finish();
-            return false;
-        } else {
-            return true;
-        }
-    }
+
 
     private LinearLayoutCompat getImagesLinearLayout(eImageAddType imageAddType) {
         if(imageAddType == eImageAddType.CONTENT) {

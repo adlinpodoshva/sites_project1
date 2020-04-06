@@ -15,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.misha.sitesproject.authentication_activities.SignupActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -91,5 +94,17 @@ public class Utils {
     public static File getAppTempDir() {
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                 + "/Tiyulim/temp");
+    }
+
+    // returns true if user is signed in, else false
+    public static boolean finishActivityIfNotSignedIn(FirebaseAuth auth, Activity activity, Intent moveToIntent) {
+        if(auth.getCurrentUser() == null) {
+            Toast.makeText(activity, "התנתקתם מהמערכת, אנא התחברו שנית", Toast.LENGTH_LONG).show();
+            activity.startActivity(moveToIntent);
+            activity.finish();
+            return false;
+        } else {
+            return true;
+        }
     }
 }

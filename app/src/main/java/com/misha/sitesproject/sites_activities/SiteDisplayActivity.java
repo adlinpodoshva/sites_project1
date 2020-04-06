@@ -17,6 +17,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.misha.sitesproject.FavouritesManager;
 import com.misha.sitesproject.R;
 import com.misha.sitesproject.Utils;
@@ -34,6 +39,7 @@ public class SiteDisplayActivity extends AppCompatActivity {
     private static final int NUM_REQUEST_CODES = WRITE_EXTERNAL_STORAGE_REQUEST_NATURAL_PHENOMENA_CODE + 1;
 
     private eSite site;
+    private boolean isFavourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class SiteDisplayActivity extends AppCompatActivity {
 
         this.site = eSite.valueOf(getIntent().getStringExtra(SITE_NAME_EXTRA_KEY));
         setTitle(this.site.getTitle());
-        initLayout();
+        initFavourite();
     }
 
     @Override
@@ -133,20 +139,44 @@ public class SiteDisplayActivity extends AppCompatActivity {
     public void onAddReviewsButtonClicked(View v) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        if(auth.getCurrentUser() != null) {
+        if(auth.getCurrentUser() != null) { // user signed in
             Intent intent = new Intent(this, AddReviewActivity.class);
             intent.putExtra(AddReviewActivity.SITE_NAME_EXTRA_KEY, this.site.name());
             startActivity(intent);
         } else { // user not signed in
             Toast.makeText(this, "יש להתחבר עם שם משתמש לצורך השארת חוות דעת", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void onFavouritesButtonClicked(View v) {
-        boolean setFavourite = !FavouritesManager.isFavourite(this.site, this);
-        FavouritesManager.setFavouriteFlag(this. site, setFavourite, this);
-        setFavouritesButtonText();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if(auth.getCurrentUser() != null) { // user signed in
+            final DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                    .child("favourites").child(auth.getUid()).child(this.site.name());
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()) {
+                        // flip favourite status
+                        SiteDisplayActivity.this.isFavourite = !dataSnapshot.getValue(Boolean.class);
+                    } else {
+                        SiteDisplayActivity.this.isFavourite = true;
+                    }
+
+                    reference.setValue(SiteDisplayActivity.this.isFavourite);
+               //     setFavouritesButtonText();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        } else {
+            Toast.makeText(this, "רק משתמשים רשומים יכולים לערוך את רשימת המועדפים שלהם",
+                    Toast.LENGTH_LONG).show();;
+        }
     }
 
     public void onViewReviewListButtonClicked(View v) {
@@ -169,18 +199,41 @@ public class SiteDisplayActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void initLayout() {
-        setFavouritesButtonText();
+    private void initFavourite() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+        if(auth.getCurrentUser() != null) { // user signed in
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+            reference.child("favourites").child(auth.getUid()).child(this.site.name())
+                .addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.exists()) {
+                        SiteDisplayActivity.this.isFavourite = dataSnapshot.getValue(Boolean.class);
+                    } else {
+                        SiteDisplayActivity.this.isFavourite = false;
+                    }
+
+                    setFavouritesButtonText();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        } else { // not signed in
+            this.isFavourite = false;
+        }
     }
 
     private void setFavouritesButtonText() {
-        Button button = findViewById(R.id.favouritesButton);
+        final Button favouriteButton = findViewById(R.id.favouritesButton);
 
-        // set text for favourites button
-        if(FavouritesManager.isFavourite(this.site, this)) {
-            button.setText("הסרה ממועדפים");
+        if(this.isFavourite) {
+            favouriteButton.setText("הסרה ממועדפים");
         } else {
-            button.setText("הוספה למועדפים");
+            favouriteButton.setText("הוספה למועדפים");
         }
     }
 
