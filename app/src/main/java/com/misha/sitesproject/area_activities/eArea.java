@@ -8,9 +8,9 @@ import java.util.List;
 
 public enum eArea {
     NORTH("צפון", new eCity[] {eCity.RAMAT_HAGOLAN, eCity.HAGALIL_HAELYON, eCity.HAGALIL_HATACHTON,
-            eCity.HAKINERET, eCity.HEIFA, eCity.HERMON}),
+            eCity.HAIFA, eCity.HAKINERET, eCity.HERMON}),
     CENTER("מרכז", new eCity[] {eCity.JERUSALEM, eCity.TEL_AVIV, eCity.HASHFELA}),
-    SOUTHׂׂ("דרום", new eCity[] {eCity.HANEGEV, eCity.EILAT, eCity.ASHDOD, eCity.ASHKELON, eCity.BEER_SHEVA});
+    SOUTHׂׂ("דרום", new eCity[] {eCity.HANEGEV, eCity.EILAT, eCity.ASHDOD, eCity.ASHKELON, eCity.YAM_HAMELAH});
 
     private final String title;
     private final eCity[] cities;

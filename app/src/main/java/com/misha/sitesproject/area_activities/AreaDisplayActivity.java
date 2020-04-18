@@ -37,7 +37,7 @@ public class AreaDisplayActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                eCity selectedCity = eCity.values()[position];
+                eCity selectedCity = AreaDisplayActivity.this.area.getCities()[position];
                 Intent intent = new Intent(getApplicationContext(), CityDisplayActivity.class);
                 intent.putExtra(CityDisplayActivity.CITY_KEY, selectedCity.name());
                 startActivity(intent);
