@@ -87,7 +87,7 @@
                 android:lines="3"
                 android:maxLines="3"
                 android:scrollbars="vertical"
-                android:hint="מקומות מסוכנים"
+                android:hint="סכנות באתר"
                 android:maxLength="100"
                 android:gravity="right"/>
             <ImageButton
