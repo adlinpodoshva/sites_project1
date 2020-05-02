@@ -97,6 +97,4 @@ public class SignupActivity extends AppCompatActivity {
         EditText phoneEditText = findViewById(R.id.phoneEditText);
         return phoneEditText.getText().toString().trim();
     }
-
-
 }

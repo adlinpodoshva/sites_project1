@@ -37,8 +37,7 @@
         android:id="@+id/fullNameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="שם מלא"
-        android:inputType="textEmailAddress"/>
+        android:hint="שם מלא" />
     <EditText
         android:id="@+id/phoneEditText"
         android:layout_width="match_parent"

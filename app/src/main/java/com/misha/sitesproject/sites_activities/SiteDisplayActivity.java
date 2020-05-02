@@ -83,6 +83,7 @@ public class SiteDisplayActivity extends AppCompatActivity {
     public void onNavigationButtonClicked(View v) {
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse(String.format("google.navigation:q=%f,%f", this.site.getLongitude(), this.site.getLatitude())));
+        intent.setPackage("com.google.android.apps.maps");
         startActivity(intent); }
 
     public void onGasStationsAndRestaurantsButtonClicked(View v) {
@@ -100,7 +101,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(url));
         startActivity(intent);
-
     }
 
     public void onBackgroundButtonClicked(View v) {

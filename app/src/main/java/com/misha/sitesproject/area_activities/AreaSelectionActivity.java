@@ -20,18 +20,13 @@ public class AreaSelectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_area_selection);
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-
-        if(auth.getCurrentUser() == null) { // not signed in
-
-        }
         initListView();
     }
 
     private void initListView() {
         ListView listView = findViewById(R.id.areaSelectionListView);
 
+        // init button text array
         final String[] areaTitles = eArea.getTitles();
         String[] buttonsTexts = new String[areaTitles.length + 1];
         System.arraycopy(areaTitles, 0, buttonsTexts, 0, areaTitles.length);
@@ -42,7 +37,7 @@ public class AreaSelectionActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(position < areaTitles.length) {
+                if(position < areaTitles.length) { // arae button clicked
                     eArea selectedArea = eArea.values()[position];
                     Intent intent = new Intent(getApplicationContext(), AreaDisplayActivity.class);
                     intent.putExtra(AreaDisplayActivity.AREA_KEY, selectedArea.name());

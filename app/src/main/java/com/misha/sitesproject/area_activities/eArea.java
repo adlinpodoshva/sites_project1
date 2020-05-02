@@ -15,7 +15,7 @@ public enum eArea {
     private final String title;
     private final eCity[] cities;
 
-    private eArea(String title, eCity[] cities) {
+    eArea(String title, eCity[] cities) {
         this.title = title;
         this.cities = cities;
     }
