@@ -48,6 +48,7 @@ public class AddReviewActivity extends AppCompatActivity {
     public static final String SITE_NAME_EXTRA_KEY = "EXTRA_SITE_NAME";
 
     private static final int MIN_DATA_FIELD_LENGTH = 5;
+    private static final int GALLERY_IMAGE_DP = 70;
     private static final String SWEAR_WORDS_MESSAGE = "אין להזין מילים גסות";
     private static final String[] SWEAR_WORDS = new String[] {
          "זונה", "שרמוטה"
@@ -252,8 +253,8 @@ public class AddReviewActivity extends AppCompatActivity {
         ImageView imageView = new ImageView(this);
 
         // layoutparams are specified in px, not dp
-        int dp = 70;
-        int px =  (int)(dp * getResources().getDisplayMetrics().density);
+
+        int px =  (int)(GALLERY_IMAGE_DP * getResources().getDisplayMetrics().density);
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(px, px);
         lp.setMargins(10, 0, 10, 0);
         imageView.setLayoutParams(lp);
@@ -281,7 +282,6 @@ public class AddReviewActivity extends AppCompatActivity {
                         Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                         startActivityForResult(takePicture, imageType.getActivtyResultCameraRequestCode());
                     }
-
                 }
             }
         });
@@ -351,22 +351,6 @@ public class AddReviewActivity extends AppCompatActivity {
         ((TextInputLayout)findViewById(R.id.dangerPlacesTextInputLayout)).setError(null);
         ((TextInputLayout)findViewById(R.id.dangerAnimalsTextInputLayout)).setError(null);
     }
-//
-//    private boolean checkLegalName() {
-//        TextInputLayout nameTextInputLayout = findViewById(R.id.nameTextInputLayout);
-//        String name = getNameText();
-//
-//        if(name.length() < MIN_DATA_FIELD_LENGTH) {
-//            nameTextInputLayout.setError(String.format("השם חייב להיות באורך לפחות %d תווים", MIN_DATA_FIELD_LENGTH));
-//            return false;
-//        }
-//        if(!isFreeOfSwearWords(name)) {
-//            nameTextInputLayout.setError(SWEAR_WORDS_MESSAGE);
-//            return false;
-//        }
-//
-//        return true;
-//    }
 
     private boolean checkLegalContent() {
         String content = getContentText();
