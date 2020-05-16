@@ -22,8 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SiteReviewListActivity extends AppCompatActivity {
-
-
     public static final String SITE_NAME_EXTRA_KEY = "EXTRA_SITE_NAME";
     public static final String REVIEW_DISPLAY_TYPE_NAME_EXTRA_KEY = "EXTRA_REVIEW_DISPLAY_TYPE_NAME";
 

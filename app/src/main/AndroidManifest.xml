@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".sites_activities.SitePlacesActivity"
-            android:label="מקומות ומקומות מסוכנים"
+            android:label="סכנות באתר"
             android:screenOrientation="portrait" />
         <activity android:name=".sites_activities.SiteAnimalsActivity"
             android:label="בעלי חיים ובעלי חיים מסוכנים"
