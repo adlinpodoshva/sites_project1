@@ -165,7 +165,6 @@ public class SiteDisplayActivity extends AppCompatActivity {
                     }
 
                     reference.setValue(SiteDisplayActivity.this.isFavourite);
-               //     setFavouritesButtonText();
                 }
 
                 @Override

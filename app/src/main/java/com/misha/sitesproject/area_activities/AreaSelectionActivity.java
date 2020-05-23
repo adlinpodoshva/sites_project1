@@ -46,7 +46,7 @@ public class AreaSelectionActivity extends AppCompatActivity {
                     FirebaseAuth auth = FirebaseAuth.getInstance();
 
                     if(auth.getCurrentUser() != null) { // signed in
-                        Intent intent = new Intent(getApplicationContext(), FavouriteSitesDisplayActivity.class);
+                        Intent intent = new Intent(AreaSelectionActivity.this, FavouriteSitesDisplayActivity.class);
                         startActivity(intent);
                     } else { // not signed in
                         Toast.makeText(AreaSelectionActivity.this, "רק משתמשים רשומים יכולים לצפות ברשימת המועדפים שלהם",

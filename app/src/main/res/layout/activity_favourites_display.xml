@@ -26,44 +26,42 @@
             android:layout_height="0dp"
             android:layout_weight="3"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="מרכז"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:gravity="center"/>
-            <ListView
-                android:id="@+id/favouriteSitesCenterListView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"/>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-        <androidx.appcompat.widget.LinearLayoutCompat
+            android:text="מרכז"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/favouriteSitesCenterListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp">
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="דרום"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:gravity="center"/>
-            <ListView
-                android:id="@+id/favouriteSitesSouthListView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"/>
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:text="דרום"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:gravity="center"/>
+        <ListView
+            android:id="@+id/favouriteSitesSouthListView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
