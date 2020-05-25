@@ -34,7 +34,6 @@
             android:name=".sites_activities.FavouriteSitesDisplayActivity"
             android:label="מועדפים"
             android:screenOrientation="portrait"/>
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
