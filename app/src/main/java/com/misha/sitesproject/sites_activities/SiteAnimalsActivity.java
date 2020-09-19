@@ -75,7 +75,7 @@ public class SiteAnimalsActivity extends AppCompatActivity {
         }
 
         try {
-            Utils.openPdfViaIntent(getAnimalsFilename(this.site), this);
+            Utils.openPdfViaIntentFromStorage(getAnimalsFilename(this.site), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
@@ -89,7 +89,7 @@ public class SiteAnimalsActivity extends AppCompatActivity {
         }
 
         try {
-            Utils.openPdfViaIntent(getDangerousAnimalsFilename(this.site), this);
+            Utils.openPdfViaIntentFromStorage(getDangerousAnimalsFilename(this.site), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }

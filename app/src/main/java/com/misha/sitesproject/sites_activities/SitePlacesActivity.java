@@ -19,7 +19,6 @@ import java.io.IOException;
 
 public class SitePlacesActivity extends AppCompatActivity {
     public static final String SITE_NAME_EXTRA = "EXTRA_SITE_NAME";
-    private static final int  WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE = 0;
     private static final int WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE = 1;
     private static final int NUM_REQUEST_CODES = WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE + 1;
 
@@ -38,9 +37,7 @@ public class SitePlacesActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode >= 0 && requestCode < NUM_REQUEST_CODES) {
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) { // permission granted
-                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE) {
-                    onPlacesOptionSelected();
-                } else if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE) {
+                if(requestCode == WRITE_EXTERNAL_STORAGE_REQUEST_DANGEROUS_PLACES_CODE) {
                     onDangerousPlacesOptionSelected();
                 }
             } else { // not granted
@@ -57,29 +54,13 @@ public class SitePlacesActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(eOption.values()[position] == eOption.PLACES) {
-                    onPlacesOptionSelected();
-                } else if(eOption.values()[position] == eOption.DANGEROUS_PLACES) {
+                if(eOption.values()[position] == eOption.DANGEROUS_PLACES) {
                     onDangerousPlacesOptionSelected();
                 } else if(eOption.values()[position] == eOption.PLACE_REVIEWS) {
                     onPlacesReviewsOptionSelected();
                 }
             }
         });
-    }
-
-    private void onPlacesOptionSelected() {
-        if(!Utils.isWritePermissionGranted(this)) {
-            Utils.requestWritePermission(this, WRITE_EXTERNAL_STORAGE_REQUEST_PLACES_CODE);
-            return;
-        }
-
-        try {
-            Utils.openPdfViaIntent(getPPlacesFileName(), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
-        }
-        ;
     }
 
     private void onDangerousPlacesOptionSelected() {
@@ -89,7 +70,7 @@ public class SitePlacesActivity extends AppCompatActivity {
         }
 
         try {
-            Utils.openPdfViaIntent(getDangerousPPlacesFileName(), this);
+            Utils.openPdfViaIntentFromStorage(getDangerousPPlacesFileName(), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
@@ -108,13 +89,9 @@ public class SitePlacesActivity extends AppCompatActivity {
         return "mekomot_mesukanim_" + this.site.name().toLowerCase();
     }
 
-    private String getPPlacesFileName() {
-        return "mekomot_" + this.site.name().toLowerCase();
-    }
-
     private enum eOption {
-        PLACES("מקומות"), DANGEROUS_PLACES("מקומות מסוכנים"),
-        PLACE_REVIEWS("צפייה בחוות דעת על מקומות באתר");
+        DANGEROUS_PLACES("סכנות באתר"),
+        PLACE_REVIEWS("צפייה בחוות דעת על סכנות באתר");
 
         private final String title;
 

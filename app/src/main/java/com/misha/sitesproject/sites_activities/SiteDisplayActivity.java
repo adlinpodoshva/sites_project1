@@ -74,7 +74,7 @@ public class SiteDisplayActivity extends AppCompatActivity {
         }
 
         try {
-            Utils.openPdfViaIntent(getHatarFilename(), this);
+            Utils.openPdfViaIntentFromStorage(getHatarFilename(), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }
@@ -130,7 +130,7 @@ public class SiteDisplayActivity extends AppCompatActivity {
         }
 
         try {
-            Utils.openPdfViaIntent(getNaturalPhenomenaFilename(), this);
+            Utils.openPdfViaIntentFromStorage(getNaturalPhenomenaFilename(), this);
         } catch(IOException e) {
             Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
         }

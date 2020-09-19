@@ -55,8 +55,22 @@ public class Utils {
         }
     }
 
+    public static void openPdfViaIntentFromStorage(String filenameWithoutExtension, Activity activity) throws IOException {
+        File pdfFile = new File(getAppPdfDir(), filenameWithoutExtension + ".pdf");
 
-    public static void openPdfViaIntent(String filenameWithoutExtension, Activity activity) throws IOException {
+        // send intent to open pdf vie third party
+        Uri fileUri = FileProvider.getUriForFile(activity,
+                activity.getApplicationContext().getPackageName() + ".fileprovider",
+                pdfFile);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.setDataAndType(fileUri, "application/pdf");
+        activity.startActivity(intent);
+    }
+
+
+    public static void openPdfViaIntentFromRaw(String filenameWithoutExtension, Activity activity) throws IOException {
         int resId = activity.getResources().getIdentifier(filenameWithoutExtension, "raw",
                 activity.getPackageName());
 
@@ -90,6 +104,12 @@ public class Utils {
             output.flush();
         }
     }
+
+    public static File getAppPdfDir() {
+        return new File(Environment.getExternalStorageDirectory().getAbsolutePath()
+                + "/Tiyulim/pdfs");
+    }
+
 
     public static File getAppTempDir() {
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath()
