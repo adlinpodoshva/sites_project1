@@ -74,5 +74,4 @@
             android:label="בחירת עיר"
             android:screenOrientation="portrait"/>
     </application>
-
 </manifest>

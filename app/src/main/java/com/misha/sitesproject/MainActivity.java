@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.misha.sitesproject.area_activities.AreaSelectionActivity;
 import com.misha.sitesproject.authentication_activities.SignupActivity;
