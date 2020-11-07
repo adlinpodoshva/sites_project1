@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -75,8 +76,10 @@ public class SiteDisplayActivity extends AppCompatActivity {
 
         try {
             Utils.openPdfViaIntentFromStorage(getHatarFilename(), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
+        } catch(IOException | IllegalArgumentException e) {
+            Toast.makeText(this, "אין מידע זמין", Toast.LENGTH_LONG).show();
+        } catch(ActivityNotFoundException e) {
+            Toast.makeText(this, "יש להתקין על המכשיר אפליקציה לקריאת קבצי PDF על מנת לצפות בקבצים", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -131,8 +134,10 @@ public class SiteDisplayActivity extends AppCompatActivity {
 
         try {
             Utils.openPdfViaIntentFromStorage(getNaturalPhenomenaFilename(), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
+        } catch(IOException | IllegalArgumentException e) {
+            Toast.makeText(this, "אין מידע זמין", Toast.LENGTH_LONG).show();
+        } catch(ActivityNotFoundException e) {
+            Toast.makeText(this, "יש להתקין על המכשיר אפליקציה לקריאת קבצי PDF על מנת לצפות בקבצים", Toast.LENGTH_LONG).show();
         }
     }
 

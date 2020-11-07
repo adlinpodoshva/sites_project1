@@ -3,6 +3,7 @@ package com.misha.sitesproject.sites_activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -76,8 +77,10 @@ public class SiteAnimalsActivity extends AppCompatActivity {
 
         try {
             Utils.openPdfViaIntentFromStorage(getAnimalsFilename(this.site), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
+        } catch(IOException | IllegalArgumentException e) {
+            Toast.makeText(this, "אין מידע זמין", Toast.LENGTH_LONG).show();
+        } catch(ActivityNotFoundException e) {
+            Toast.makeText(this, "יש להתקין על המכשיר אפליקציה לקריאת קבצי PDF על מנת לצפות בקבצים", Toast.LENGTH_LONG).show();
         }
         ;
     }
@@ -90,8 +93,10 @@ public class SiteAnimalsActivity extends AppCompatActivity {
 
         try {
             Utils.openPdfViaIntentFromStorage(getDangerousAnimalsFilename(this.site), this);
-        } catch(IOException e) {
-            Toast.makeText(this, "תקלה בפתיחת קובץ", Toast.LENGTH_LONG).show();
+        } catch(IOException | IllegalArgumentException e) {
+            Toast.makeText(this, "אין מידע זמין", Toast.LENGTH_LONG).show();
+        } catch(ActivityNotFoundException e) {
+            Toast.makeText(this, "יש להתקין על המכשיר אפליקציה לקריאת קבצי PDF על מנת לצפות בקבצים", Toast.LENGTH_LONG).show();
         }
         ;
     }
