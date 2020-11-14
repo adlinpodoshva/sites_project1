@@ -81,8 +81,7 @@ public class SiteAnimalsActivity extends AppCompatActivity {
             Toast.makeText(this, "אין מידע זמין", Toast.LENGTH_LONG).show();
         } catch(ActivityNotFoundException e) {
             Toast.makeText(this, "יש להתקין על המכשיר אפליקציה לקריאת קבצי PDF על מנת לצפות בקבצים", Toast.LENGTH_LONG).show();
-        }
-        ;
+        };
     }
 
     private void onDangerousAnimalsOptionSelected() {

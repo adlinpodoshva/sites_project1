@@ -69,52 +69,11 @@ public class Utils {
         activity.startActivity(intent);
     }
 
-
-    public static void openPdfViaIntentFromRaw(String filenameWithoutExtension, Activity activity) throws IOException {
-        int resId = activity.getResources().getIdentifier(filenameWithoutExtension, "raw",
-                activity.getPackageName());
-
-        try (InputStream inputStream = activity.getResources().openRawResource(resId)) {
-            // copy file to sdcard
-            File folderPath = getAppTempDir();
-            folderPath.mkdirs();
-            File pdfCopy = new File(folderPath, filenameWithoutExtension + ".pdf");
-            pdfCopy.createNewFile();
-            writeStreamToFile(inputStream, pdfCopy);
-
-            // send intent to open pdf file via third party
-            Uri fileUri = FileProvider.getUriForFile(activity,
-                    activity.getApplicationContext().getPackageName() + ".fileprovider",
-                    pdfCopy);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            intent.setDataAndType(fileUri, "application/pdf");
-            activity.startActivity(intent);
-        }
-    }
-
-    private static void writeStreamToFile(@NonNull InputStream input, @NonNull File file) throws IOException {
-        try (OutputStream output = new FileOutputStream(file)) {
-            byte[] buffer = new byte[1024];
-            int read;
-            while ((read = input.read(buffer)) != -1) {
-                output.write(buffer, 0, read);
-            }
-            output.flush();
-        }
-    }
-
     public static File getAppPdfDir() {
         return new File(Environment.getExternalStorageDirectory().getAbsolutePath()
                 + "/Tiyulim/pdfs");
     }
 
-
-    public static File getAppTempDir() {
-        return new File(Environment.getExternalStorageDirectory().getAbsolutePath()
-                + "/Tiyulim/temp");
-    }
 
     // returns true if user is signed in, else false
     public static boolean finishActivityIfNotSignedIn(FirebaseAuth auth, Activity activity, Intent moveToIntent) {
