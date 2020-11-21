@@ -58,6 +58,10 @@ public class Utils {
     public static void openPdfViaIntentFromStorage(String filenameWithoutExtension, Activity activity) throws IOException {
         File pdfFile = new File(getAppPdfDir(), filenameWithoutExtension + ".pdf");
 
+        if(!pdfFile.exists()) {
+            throw new IOException("File does not exist");
+        }
+
         // send intent to open pdf vie third party
         Uri fileUri = FileProvider.getUriForFile(activity,
                 activity.getApplicationContext().getPackageName() + ".fileprovider",
