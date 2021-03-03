@@ -58,7 +58,7 @@ public class Utils {
     public static void openPdfViaIntentFromStorage(String filenameWithoutExtension, Activity activity) throws IOException {
         File pdfFile = new File(getAppPdfDir(), filenameWithoutExtension + ".pdf");
 
-        if(!pdfFile.exists()) {
+        if(!pdfFile.isFile()) {
             throw new IOException("File does not exist");
         }
 
