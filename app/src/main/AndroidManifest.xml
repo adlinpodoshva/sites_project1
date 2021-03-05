@@ -71,7 +71,7 @@
             android:screenOrientation="portrait"/>
         <activity
             android:name=".area_activities.AreaDisplayActivity"
-            android:label="בחירת עיר"
+            android:label="בחירת תת-אזור"
             android:screenOrientation="portrait"/>
     </application>
 </manifest>
