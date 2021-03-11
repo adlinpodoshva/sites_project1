@@ -16,12 +16,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.misha.sitesproject.FavouritesManager;
 import com.misha.sitesproject.R;
 import com.misha.sitesproject.Utils;
 import com.misha.sitesproject.area_activities.AreaSelectionActivity;
 import com.misha.sitesproject.area_activities.eArea;
-import com.misha.sitesproject.authentication_activities.SignupActivity;
 
 import java.util.ArrayList;
 import java.util.List;

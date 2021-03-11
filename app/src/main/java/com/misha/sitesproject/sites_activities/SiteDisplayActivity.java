@@ -3,7 +3,6 @@ package com.misha.sitesproject.sites_activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -11,7 +10,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,15 +21,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.misha.sitesproject.FavouritesManager;
 import com.misha.sitesproject.R;
 import com.misha.sitesproject.Utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class SiteDisplayActivity extends AppCompatActivity {
     public static final String SITE_NAME_EXTRA_KEY = "EXTRA_SITE_NAME";
